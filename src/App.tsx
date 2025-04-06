@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaLinkedin, FaXTwitter, FaGithub, FaRegMoon, FaSun } from "react-icons/fa6";
 import { SiLeetcode } from "react-icons/si";
 import profilePicture from "./assets/yadu.jpeg";
