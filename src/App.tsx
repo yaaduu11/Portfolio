@@ -1,21 +1,61 @@
-import { useState } from "react";
-import { FaLinkedin, FaXTwitter, FaGithub, FaRegMoon, FaSun } from "react-icons/fa6";
-import { SiLeetcode } from "react-icons/si";
+import { useState } from 'react';
+import { Sun } from 'lucide-react';
 import profilePicture from "./assets/yadu.jpeg";
+import About_me from './components/About-me';
+import { ProjectsSection } from './components/Projects';
+
+import { FaLinkedin, FaXTwitter, FaGithub, FaRegMoon } from "react-icons/fa6";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
-  });
-  
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeSection, setActiveSection] = useState('about');
+
   const toggleDarkMode = () => {
-    setDarkMode((prevMode) => {
-      const newMode = !prevMode;
-      localStorage.setItem("theme", newMode ? "dark" : "light");
-      return newMode;
-    });
+    setDarkMode(!darkMode);
   };
-  
+
+  const navigationItems = [
+    { id: 'about', label: 'About Me' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
+  const renderContent = () => {
+    switch (activeSection) {
+      case 'about':
+        return <About_me />;
+      case 'projects':
+        return <ProjectsSection />;
+      case 'contact':
+        return (
+          <div className="pt-6 mt-8 text-center border-t">
+            <h2 className="mb-6 text-3xl font-bold">Get In Touch</h2>
+            <p className="max-w-2xl mx-auto mb-8 text-lg">
+              I'm always open to discussing new opportunities, interesting projects, or potential collaborations. 
+              Feel free to reach out if you'd like to connect!
+            </p>
+            <div className="space-y-4">
+              <p className="text-xl">
+                Email: <a href="mailto:yadukrishnankzr@gmail.com" className="text-blue-400 underline transition-colors hover:text-blue-300">yadukrishnankzr@gmail.com</a>
+              </p>
+              <div className="flex justify-center gap-6 mt-8 text-2xl">
+                <a href="https://github.com/yaaduu11/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-blue-400">
+                  <FaGithub />
+                </a>
+                <a href="https://www.linkedin.com/in/yadu-krishnan-k/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-blue-400">
+                  <FaLinkedin />
+                </a>
+                <a href="https://x.com/yadukriishnan/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-blue-400">
+                  <FaXTwitter />
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return <About_me />;
+    }
+  };
 
   return (
     <div className={`${darkMode ? "bg-black text-white" : "bg-white text-black"} min-h-screen transition-colors duration-300 font-sans`}>
@@ -25,52 +65,69 @@ function App() {
 
       <div className="p-6 mx-auto max-w-7xl">
         <div className="flex justify-end pt-2">
-          <button onClick={toggleDarkMode} className="text-2xl">
-            {darkMode ? <FaSun /> : <FaRegMoon />}
+          <button 
+            onClick={toggleDarkMode} 
+            className="text-2xl transition-transform duration-200 hover:scale-110"
+            aria-label="Toggle dark mode"
+          >
+            {darkMode ? <Sun /> : <FaRegMoon />}
           </button>
         </div>
 
         <div className="text-center mt-7">
-          <h1 className="text-4xl font-bold">Yadukrishnan K</h1>
-          <p className="mt-2 text-lg">Software Developer, Tinkerer & Startup Enthusiast</p>
+          <h1 className="text-4xl font-bold">Yadu Krishnan</h1>
+          <p className="mt-2 text-lg">Software Developer, System Designer & Startup Enthusiast</p>
 
-          <div className="w-48 h-48 mx-auto mt-6 overflow-hidden rounded-full">
+          <div className="w-56 h-56 mx-auto mt-6 overflow-hidden rounded-full shadow-lg">
             <img src={profilePicture} alt="Profile" className="object-cover w-full h-full" />
           </div>
 
           <div className="flex justify-center gap-6 mt-6 text-2xl">
-            <a href="https://www.linkedin.com/in/yadu-krishnan-k/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-            <a href="https://x.com/Yadukrishnan616/" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
-            <a href="https://github.com/yaaduu11/" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-            <a href="https://leetcode.com/u/Yadukrishnan_k/" target="_blank" rel="noopener noreferrer"><SiLeetcode /></a>
+            <a href="https://github.com/yaaduu11/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-blue-400">
+              <FaGithub />
+            </a>
+            <a href="https://www.linkedin.com/in/yadu-krishnan-k/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-blue-400">
+              <FaLinkedin />
+            </a>
+            <a href="https://x.com/yadukriishnan/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-blue-400">
+              <FaXTwitter />
+            </a>
           </div>
         </div>
 
-        <div className="pt-6 mt-8 border-t">
-          <p className="leading-relaxed text-justify text-[1.3rem] font-[Playfair]">
-            I am a hobbyist software developer and a tinkerer.
-            <br /><br />
-            I specialize in full-stack development, proficient with modern tools and frameworks including Node.js, React.js, Express.js, TypeScript, Next.js, Redux, MongoDB, PostgreSQL, Socket.io, and WebRTC.
-            <br /><br />
-            My tech journey started early in life, sparked by a deep fascination for innovation and building things from scratch. I began coding in 12th grade with C++, and since then, I've grown into a full-stack engineer with experience in both foundational and cutting-edge technologies.
-            <br /><br />
-            My architectural knowledge covers Microservices, Repository and MVC patterns, and includes practical experience integrating systems with Kafka, Redis, RabbitMQ, Docker, Kubernetes, and AWS. I'm also skilled in database design and have worked with services such as Razorpay, Stripe, Cloudinary, Firebase, Node Mailer, Google Dialogflow, OAuth 2.0, JWT, and Postman.
-            <br /><br />
-            I focus on writing clean, scalable, and maintainable code and enjoy seeing projects through from concept to deployment, especially with CI/CD practices and cloud-native tools.
-            <br /><br />
-            Beyond work, I’m a constant learner—engaged in open-source contributions, tech communities, and coding challenges. I believe in innovation through collaboration. Let’s connect!
-          </p>
+        <div className="flex justify-center mt-12 mb-8">
+          <nav className="flex px-8 py-3 space-x-8 bg-gray-500 rounded-full bg-opacity-10 backdrop-blur-sm">
+            {navigationItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setActiveSection(item.id)}
+                className={`px-4 py-2 rounded-full transition-all duration-300 font-medium ${
+                  activeSection === item.id
+                    ? 'bg-gray-500 text-white shadow-lg'
+                    : 'hover:bg-opacity-20 hover:bg-gray-500 text-gray-500'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
         </div>
 
-        <footer className="py-2 mt-4 text-gray-500 border-t">
+        <div className="transition-all duration-500 ease-in-out">
+          {renderContent()}
+        </div>
+
+        <footer className="py-2 mt-12 text-gray-500 border-t">
           <div className="text-base text-start">
-            <em>Last updated on 6th April 2025.</em> I can be reached at <a href="mailto:yadu@gmail.com" className="text-blue-400 underline">yadukrishnankzr@gmail.com</a>
+            <em>Last updated on 15th June 2025.</em> I can be reached at{' '}
+            <a href="mailto:yadukrishnankzr@gmail.com" className="text-blue-400 underline transition-colors hover:text-blue-300">
+              yadukrishnankzr@gmail.com
+            </a>
           </div>
           <div className="mt-6 text-lg text-center">
             Yadukrishnan K &copy; 2025
           </div>
         </footer>
-
       </div>
     </div>
   );
