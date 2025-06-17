@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Sun } from 'lucide-react';
-import profilePicture from "./assets/yadu.jpeg";
+import profilePicture2 from "./assets/yadu_new.jpeg";
+
 import About_me from './components/About-me';
 import { ProjectsSection } from './components/Projects';
 
@@ -15,7 +16,7 @@ function App() {
   };
 
   const navigationItems = [
-    { id: 'about', label: 'About Me' },
+    { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -79,7 +80,7 @@ function App() {
           <p className="mt-2 text-lg">Software Developer, System Designer & Startup Enthusiast</p>
 
           <div className="w-56 h-56 mx-auto mt-6 overflow-hidden rounded-full shadow-lg">
-            <img src={profilePicture} alt="Profile" className="object-cover w-full h-full" />
+            <img src={profilePicture2} alt="Profile" className="object-cover w-full h-full" />
           </div>
 
           <div className="flex justify-center gap-6 mt-6 text-2xl">
